@@ -1,0 +1,98 @@
+﻿<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="Bookmark" href="/favicon.ico" >
+<link rel="Shortcut Icon" href="/favicon.ico" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5shiv.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+
+<![endif]-->
+<link href="/static/h-ui/css/H-ui.min.css" rel="stylesheet" type="text/css" />
+<link href="/static/h-ui.admin/css/H-ui.admin.css" rel="stylesheet" type="text/css" />
+<link href="/lib/Hui-iconfont/1.0.8/iconfont.css" rel="stylesheet" type="text/css" />
+
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>departmentList</title>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 部门 <span class="c-gray en">&gt;</span> 部门管理 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+	<div class="panel panel-default">
+		<div class="panel-header">部门管理</div>
+		<div class="panel-body">
+			<div class="cl pd-5 bg-1 bk-gray">你可以在这个界面进行部门信息管理操作,如有需要可  <a class="btn btn-primary radius" href="javascript:;" onclick="dep_add('添加部门','/dep/depadd','','310')">添加部门信息</a></div>
+		</div>
+	</div>
+	<div class="mt-20">
+		<table class="table table-border table-bordered table-bg table-hover table-sort table-responsive">
+			<thead>
+				<tr class="text-c">
+					<th width="25"><input type="checkbox" name="" value=""></th>
+					<th>部门名称</th><th>部门信息</th><th>状态</th><th>操作</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="text-c" th:each="Department:${dep}">
+					<td><input type="checkbox" value="" name=""></td>
+					<td th:text="${Department.Dept_name}">10001</td>
+					<td class="text-l" th:text="${Department.Remark}"></td>
+					<td><span th:if = "${Department.Is_delete eq 0}" class="label label-danger radius">未启用</span><span th:if = "${Department.Is_delete eq 1}" class="label label-success radius">已启用</span></td>
+					<td class="f-14 td-manage"><a style="text-decoration:none" class="ml-5" th:onclick="'javascript:dep_edit(\''+${Department.Dept_id}+'\')'" href="javascript:;" title="编辑"><i class="Hui-iconfont">&#xe6df;</i></a> <a style="text-decoration:none" class="ml-5" th:onClick="'javascript:dep_del(this,\''+${Department.Dept_id}+'\')'" href="javascript:;" title="删除"><i class="Hui-iconfont">&#xe6e2;</i></a></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="/lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="/static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="/static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+
+<script type="text/javascript" src="/lib/datatables/1.10.0/jquery.dataTables.min.js"></script>
+<script type="text/javascript" th:inline="none">
+$('.table-sort').dataTable({
+	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
+	"bStateSave": true,//状态保存
+	"pading":false,
+	"aoColumnDefs": [
+	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+	  {"orderable":false,"aTargets":[0,4]}// 不参与排序的列
+	]
+});
+function dep_add(title,url,w,h){
+	layer_show(title,url,w,h);
+}
+/*部门-编辑*/
+function dep_edit(id){
+	layer_show('部门编辑','update/'+id,'','310');
+}
+
+/*部门-删除*/
+function dep_del(obj,id){
+	layer.confirm('确认要删除吗？',function(index){
+		$.ajax({
+			type: 'GET',
+			url: '/dep/delDep/'+id,
+			success: function(data){
+				$(obj).parents("tr").remove();
+				layer.msg('已删除!',{icon:1,time:1000});
+			},
+			error:function(data) {
+				console.log(data.msg);
+			},
+		});
+	});
+}
+</script>  
+</body>
+</html>

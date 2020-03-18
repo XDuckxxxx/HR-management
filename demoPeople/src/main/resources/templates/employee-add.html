@@ -1,0 +1,200 @@
+<!--_meta 作为公共模版分离出去-->
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="Bookmark" href="/favicon.ico" >
+<link rel="Shortcut Icon" href="/favicon.ico" />
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5shiv.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="/static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="/static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="/lib/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="/static/h-ui.admin/skin/default/skin.css" id="skin" />
+<link rel="stylesheet" type="text/css" href="/static/h-ui.admin/css/style.css" />
+<!--[if IE 6]>
+<script type="text/javascript" src="lib/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<!--/meta 作为公共模版分离出去-->
+
+<title>添加用户 - H-ui.admin v3.1</title>
+<meta name="keywords" content="H-ui.admin v3.1,H-ui网站后台模版,后台模版下载,后台管理系统模版,HTML后台模版下载">
+<meta name="description" content="H-ui.admin v3.1，是一款由国人开发的轻量级扁平化网站后台模板，完全免费开源的网站后台管理系统模版，适合中小型CMS后台系统。">
+</head>
+<body>
+<article class="page-container">
+	<form action="#" method="post" class="form form-horizontal" id="form-employee-add">
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>部门名称：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<select class="form-control" name="Dept_id" id="Dept_id">
+					<option th:each="Department:${dep}" th:value="${Department.Dept_id}" th:text="${Department.Dept_name}"></option>
+				</select>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>职位名称：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<select class="form-control" name="Job_id" id="Job_id">
+					<option th:each="Job:${job}" th:value="${Job.Job_id}" th:text="${Job.Job_name}"></option>
+				</select>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>姓名：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" placeholder="姓名" name="Emp_name" id="Emp_name">
+			</div>
+		</div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>身份证：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" placeholder="身份证" name="Card_id" id="Card_id">
+            </div>
+        </div>
+        <div class="row cl">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>家庭地址：</label>
+            <div class="formControls col-xs-8 col-sm-9">
+                <input type="text" class="input-text" placeholder="家庭地址" name="Address" id="Address">
+            </div>
+        </div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>QQ：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" placeholder="QQ" name="Qq" id="Qq">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>电话号码：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" placeholder="电话号码" name="Phone" id="Phone">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>电子邮件：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" placeholder="电子邮件" name="Email" id="Email">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>性别：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<div class="radio">
+					<label>
+						<input type="radio" name="Sex" value="男"> 男
+					</label>
+					<label>
+						<input type="radio" name="Sex" value="女"> 女
+					</label>
+				</div>
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>生日：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" placeholder="生日" name="Birthday" id="Birthday">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>学历：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" placeholder="学历" name="Education" id="Education">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>特长：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" placeholder="特长" name="Speciality" id="Speciality">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>政治背景：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" placeholder="政治背景" name="Race" id="Race">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>额外信息：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" placeholder="额外信息" name="Remark" id="Remark">
+			</div>
+		</div>
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>入职时间：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="date" class="input-text" placeholder="入职时间" name="Create_date" id="Create_date">
+			</div>
+		</div>
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+			</div>
+		</div>
+	</form>
+</article>
+
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="/lib/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript" src="/lib/layer/2.4/layer.js"></script>
+<script type="text/javascript" src="/static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="/static/h-ui.admin/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
+
+<!--请在下方写此页面业务相关的脚本--> 
+<script type="text/javascript" src="lib/My97DatePicker/4.8/WdatePicker.js"></script>
+<script type="text/javascript" src="/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
+<script type="text/javascript" src="/lib/jquery.validation/1.14.0/validate-methods.js"></script>
+<script type="text/javascript" src="/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script type="text/javascript">
+
+	// function ajax_post() {
+	// 	var form = $("form[name=empPostForm]");
+	// 	var options ={
+	// 		type: 'POST',
+	// 		url: "/employee/postEmp",
+	// 		success: function (){
+	// 			window_close();
+	// 		}
+	// 	};
+	// 	form.ajaxSubmit(options);
+	// }
+
+	$("#form-employee-add").validate({
+		rules:{
+			Dept_id:{required:true,}, Job_id:{required:true,}, Emp_name:{required:true,}, Card_id:{required:true,}, Address:{required:true,},
+			Qq:{required:true,}, Phone:{required:true,}, Email:{required:true,}, Sex:{required:true,}, Birthday:{required:true,},
+			Education:{required:true,}, Speciality:{required:true,}, Race:{required:true,}, Remark:{required:true,}, Create_date:{required:true,},
+		},
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function(form){
+			var options ={
+				type: 'POST',
+				url: "/employee/postEmp",
+				success: function (){
+					window_close();
+				}
+			};
+			$(form).ajaxSubmit(options);
+		}
+	});
+
+    function window_close(){
+
+        window.parent.location.reload();
+        var index = parent.layer.getFrameIndex(window.name);
+        parent.layer.close(index);
+        parent.parent.layer.msg('已添加!',{icon:1,time:1000});
+    }
+
+</script> 
+<!--/请在上方写此页面业务相关的脚本-->
+</body>
+</html>
